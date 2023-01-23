@@ -1,0 +1,66 @@
+Day 7(Task)
+a)Get all the countries from the Asia continent /region using the Filter function:
+var request = new XMLHttpRequest();
+         request.open('GET','https://restcountries.com/v3.1/all',true)
+         request.send();
+         request.onload= function(){
+        var data = JSON.parse(request.response);
+        var filtertedData=data.filter((element)=>{
+         if( element.region === "Asia"){
+         return element;}
+        })
+        console.log(filtertedData)
+        }
+
+b)Get all the countries with a population of less than 2 lakhs using Filter function:
+var request = new XMLHttpRequest();
+         request.open('GET','https://restcountries.com/v3.1/all',true)
+         request.send();
+         request.onload= function(){
+        var data = JSON.parse(request.response)
+        var filteredData1=data.filter((element)=>{
+            if(element.population<2000000){
+               return element;
+         }
+        })
+        console.log(filteredData1)
+        }
+
+c)Print the following details name, capital, flag using forEach function:
+var request = new XMLHttpRequest();
+         request.open('GET','https://restcountries.com/v3.1/all',true)
+         request.send();
+         request.onload= function(){
+        var data = JSON.parse(request.response)
+         data.forEach(element => {
+            console.log("name: "+JSON.stringify(element.name))
+            console.log("capital: "+element.capital)
+            console.log("flag : "+element.flag)
+         })
+        }
+
+d)Print the total population of countries using reduce function:
+var request = new XMLHttpRequest();
+         request.open('GET','https://restcountries.com/v3.1/all',true)
+         request.send();
+         request.onload= function(){
+        var data = JSON.parse(request.response)
+        var results=data.reduce((acc,cvalue)=>acc+cvalue.population,0)
+        console.log(results)
+        }
+
+e)Print the country which uses US Dollars as currency:
+var request = new XMLHttpRequest();
+         request.open('GET','https://restcountries.com/v3.1/all',true)
+         request.send();
+         request.onload= function(){
+        var data = JSON.parse(request.response)
+       data.filter((element)=>{
+         for(let key in element.currencies){
+            if(element.currencies[key].name==="United States dollar")
+             console.log(element.name.common)
+         }
+       })
+      }
+
+
